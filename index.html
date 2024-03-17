@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>Noti Auto | Landing page</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
+    <!-- <link rel="manifest" href="assets/img/favicons/manifest.json"> -->
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
+    <link href="assets/css/theme.css" rel="stylesheet" />
+    <link href="assets/css/dark-colors.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- Alpine Plugins -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Alpine Core -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.11.1/dist/cdn.min.js"></script>
+    
+    <!-- <script defer src="assets/js/alpine-data.js"></script> -->
+  </head>
+
+
+  <body x-data="notiAutoData" :class="isDark ? 'darkColors' : 'lightColors'">
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      
+      <!-- ============================================-->
+      <!-- <section> begin - Menu =====================-->
+      <nav class="navbar navbar-expand-lg fixed-top py-3" :class="isDark ? 'navbar-dark' : 'navbar-light'">
+        <div class="container"><a :class="{ 'link-color' : isDark }" class="navbar-brand d-flex align-items-center fw-bold fs-2" href="#home">
+            <div class="text-warning">Noti</div>
+            <div :class="{ 'link-color' : isDark }" class="text-1000">Auto</div>
+          </a>
+          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto pt-2 pt-lg-0">
+              <li class="nav-item" data-anchor="data-anchor">
+                <a :class="{ 'link-color' : isDark }" x-text="isEng ? lang.en.menu.home : lang.es.menu.home" class="nav-link fw-medium active" aria-current="page" href="#home">
+                </a>
+              </li>
+              <li class="nav-item" data-anchor="data-anchor">
+                <a :class="{ 'link-color' : isDark }" x-text="isEng ? lang.en.menu.features : lang.es.menu.features" class="nav-link fw-medium" href="#features"></a>
+              </li>
+              <li class="nav-item" data-anchor="data-anchor">
+                <a :class="{ 'link-color' : isDark }" x-text="isEng ? lang.en.menu.whyuse : lang.es.menu.whyuse" class="nav-link fw-medium" href="#whyuseit"></a>
+              </li>
+              <li class="nav-item" data-anchor="data-anchor">
+                <a :class="{ 'link-color' : isDark }" x-text="isEng ? lang.en.menu.plan : lang.es.menu.plan" class="nav-link fw-medium" href="#pricing"></a>
+              </li>
+              <li class="nav-item" data-anchor="data-anchor">
+                <a :class="{ 'link-color' : isDark }" x-text="isEng ? lang.en.menu.testimonials : lang.es.menu.testimonials" class="nav-link fw-medium" href="#testimonial"></a>
+              </li>
+              <li class="nav-item" data-anchor="data-anchor">
+                <a :class="{ 'link-color' : isDark }" x-text="isEng ? lang.en.menu.faq : lang.es.menu.faq" class="nav-link fw-medium" href="#faq"></a>
+              </li>
+              <li class="nav-item" data-anchor="data-anchor">
+                <a :class="{ 'link-color' : isDark }" x-text="isEng ? lang.en.menu.download : lang.es.menu.download" class="nav-link fw-medium" href="#download"></a>
+              </li>
+
+              <li class="nav-item d-flex justify-content-start justify-content-lg-end align-items-center">
+                <div class="dropdown mt-3 mt-lg-0 ms-lg-3">
+                  <button class="border-0 bg-transparent m-0 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i :class="{ 'link-color' : isDark }" class="fas fa-globe text-secondary h4 m-0"></i>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li class="mb-2">
+                      <button class="text-start border-0 bg-transparent w-100" type="button" x-on:click="isEng = true">
+                        <img src="assets/img/flags/US-Flag.png" width="20" class="me-2">
+                        English
+                      </button>
+                    </li>
+                    <li>
+                      <button class="text-start border-0 bg-transparent w-100" type="button" x-on:click="isEng = false">
+                        <img src="assets/img/flags/ES-Flag.png" width="20" class="me-2">
+                        Spanish
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="nav-item d-flex justify-content-start justify-content-lg-end align-items-center">
+                <div class="form-check form-switch mt-3 mt-lg-0  ms-lg-3">
+                  <input :class="{ 'bg-dark-button' : isDark }" class="form-check-input" type="checkbox" role="switch" id="darkModeControl" @click="isDark = !isDark" :checked="isDark">
+                  <label class="form-check-label visually-hidden" for="darkModeControl">Change appearance</label>
+                </div>
+              </li>
+            </ul>
+            
+
+
+          </div>
+        </div>
+      </nav>
+      <!-- <section> close - Menu =====================-->
+      <!-- ============================================-->
+
+      <section class="py-0" id="home">
+        <div class="bg-holder" style="background-image:url('assets/img/illustrations/hero-bg.png');background-position:bottom;background-size:cover;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container position-relative">
+          <div class="row align-items-center py-8">
+            <div class="col-md-5 col-lg-6 order-md-1 text-center text-md-end"><img class="img-fluid" src="assets/img/illustrations/mobile.png" width="350" alt="" /></div>
+            <div class="col-md-7 col-lg-6 text-center text-md-start">
+              <span 
+                class="badge bg-light rounded-pill text-dark align-items-center d-flex flex-row-reverse justify-content-end mx-auto mx-md-0 p-0 w-75 w-sm-50 w-md-75 w-xl-50 mb-3"
+              >
+                <span x-text="isEng ? lang.en.overview.promMsg : lang.es.overview.promMsg"></span>
+                <img class="img-fluid float-start me-3" src="assets/img/illustrations/arrow-right.png" alt=""/>
+              </span>
+              <h1 :class="{ 'title-color' : isDark }" class="mb-4 display-3 fw-bold lh-sm" x-text="isEng ? lang.en.overview.title : lang.es.overview.title"></h1>
+              <p class="mt-3 mb-4 fs-1">
+                <span x-text="isEng ? lang.en.overview.subtitle1 : lang.es.overview.subtitle1"></span> 
+                <br class="d-none d-lg-block" />
+                <span x-text="isEng ? lang.en.overview.subtitle2 : lang.es.overview.subtitle2"></span>   
+              </p>
+              <a :class="{ 'bg-dark-button' : isDark }" class="btn btn-lg btn-primary rounded-pill hover-top" href="#" role="button" x-text="isEng ? lang.en.overview.button : lang.es.overview.button"></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ============================================-->
+      <!-- <section> begin - Companies ================-->
+      <section class="py-7">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-12 mx-auto align-items-center text-center">
+              <p class="mb-4" x-text="isEng ? lang.en.companies : lang.es.companies"></p>
+            </div>
+          </div>
+          <div class="row align-items-center justify-content-center justify-content-lg-around">
+            <div class="col-6 col-sm-4 col-md-4 col-lg-2 px-md-0 mb-5 mb-lg-0 text-center"><img src="assets/img/gallery/excel.png" width="200" alt="" /></div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-2 px-md-0 mb-5 mb-lg-0 text-center"><img src="assets/img/gallery/DonoLogo.png" width="200" alt="" /></div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-2 px-md-0 mb-5 mb-lg-0 text-center"><img src="assets/img/gallery/impresaRepuestos.png" width="200" alt="" /></div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-2 px-md-0 mb-5 mb-lg-0 text-center"><img src="assets/img/gallery/tireExpress.png" width="200" alt="" /></div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-2 px-md-0 mb-5 mb-lg-0 text-center"><img src="assets/img/gallery/autoService.png" width="200" alt="" /></div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close - Companies ================-->
+      <!-- ============================================-->
+
+
+      <section class="py-5" id="features">
+        <div class="container-lg">
+          <div class="row align-items-center">
+            <div class="col-md-5 col-lg-6 order-md-0 text-center text-md-start"><img class="img-fluid" src="assets/img/illustrations/feature-bg.png" width="550" alt="" /></div>
+            <div class="col-md-7 col-lg-6 px-sm-5 px-md-0">
+              <h6 :class="{ 'title-color' : isDark }" class="fw-bold fs-4 display-3 lh-sm" x-text="isEng ? lang.en.features.title : lang.es.features.title" ></h6>
+              <p class="my-4" x-html="isEng ? lang.en.features.description : lang.es.features.description"></p>
+              <div class="d-flex align-items-center mb-5">
+                <div><img class="img-fluid" src="assets/img/illustrations/fast-performance.png" width="90" alt="" /></div>
+                <div class="px-4">
+                  <h6 :class="{ 'title-color' : isDark }" class="fw-bold text-danger" x-text="isEng ? lang.en.features.efficiency : lang.es.features.efficiency"></h5>
+                  <p x-text="isEng ? lang.en.features.effiDesc : lang.es.features.effiDesc"></p>
+                </div>
+              </div>
+              <div class="d-flex align-items-center mb-5">
+                <div><img class="img-fluid" src="assets/img/illustrations/prototype.png" width="90" alt="" /></div>
+                <div class="px-4">
+                  <h6 :class="{ 'title-color' : isDark }" class="fw-bold text-primary" x-text="isEng ? lang.en.features.trust : lang.es.features.trust"></h5>
+                  <p x-text="isEng ? lang.en.features.trustDesc : lang.es.features.trustDesc"></p>
+                </div>
+              </div>
+              <div class="d-flex align-items-center mb-5">
+                <div><img class="img-fluid" src="assets/img/illustrations/vector.png" width="90" alt="" /></div>
+                <div class="px-4">
+                  <h6 :class="{ 'title-color' : isDark }" class="fw-bold text-success" x-text="isEng ? lang.en.features.historical : lang.es.features.historical"></h5>
+                  <p x-text="isEng ? lang.en.features.hisDesc : lang.es.features.hisDesc"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ============================================-->
+      <!-- <section> begin - Features =================-->
+      <section class="py-5">
+
+        <div class="container">
+          <div class="row align-items-center mb-6">
+            <div class="col-md-5 col-lg-4 offset-lg-1">
+              <h1 :class="{ 'title-color' : isDark }" class="fw-bold lh-base" x-text="isEng ? lang.en.features.title2 : lang.es.features.title2"></h1>
+            </div>
+            <div class="col-md-6 col-lg-5 offset-lg-1 border-start py-5 ps-5">
+              <p class="mb-0" x-text="isEng ? lang.en.features.description2 : lang.es.features.description2"></p>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close - Features =================-->
+      <!-- ============================================-->
+
+
+      <!-- ============================================-->
+      <!-- <section> begin - Technologies =============-->
+      <section class="py-6">
+
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-5 order-md-0 text-center text-md-start"><img class="img-fluid mb-4" src="assets/img/illustrations/call-to-action.png" width="550" alt="" /></div>
+            <div class="col-md-6 text-center text-md-start offset-md-1">
+              <h6 :class="{ 'title-color' : isDark }" class="fw-bold fs-4 display-3 lh-sm" x-text="isEng ? lang.en.technologies.title : lang.es.technologies.title"></h6>
+              <p class="my-4 pe-xl-5" x-text="isEng ? lang.en.technologies.description : lang.es.technologies.description"></p>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close - Technologies =============-->
+      <!-- ============================================-->
+
+
+
+
+      <!-- ============================================-->
+      <!-- <section> begin - Why use it ===============-->
+      <section class="py-6" id="whyuseit">
+
+        <div class="container">
+          <div class="row justify-content-center mb-6">
+            <div class="col-lg-6 text-center mx-auto mb-3 mb-md-5 mt-4">
+              <h6 :class="{ 'title-color' : isDark }" class="fw-bold fs-4 display-3 lh-sm" x-text="isEng ? lang.en.whyuseit.title : lang.es.whyuseit.title"></h6>
+              <p class="mb-0" x-text="isEng ? lang.en.whyuseit.subtitle : lang.es.whyuseit.subtitle"></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-6">
+              <div class="text-center px-lg-3"><img class="img-fluid mb-3" src="assets/img/illustrations/app.png" width="90" alt="" />
+                <h6 :class="{ 'title-color' : isDark }" class="fw-bold" x-text="isEng ? lang.en.whyuseit.reason1 : lang.es.whyuseit.reason1"></h5>
+                <p class="mb-md-0" x-text="isEng ? lang.en.whyuseit.description1 : lang.es.whyuseit.description1"></p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-6">
+              <div class="text-center px-lg-3"><img class="img-fluid mb-3" src="assets/img/illustrations/time-award.png" width="90" alt="" />
+                <h6 :class="{ 'title-color' : isDark }" class="fw-bold" x-text="isEng ? lang.en.whyuseit.reason2 : lang.es.whyuseit.reason2"></h5>
+                <p class="mb-md-0" x-text="isEng ? lang.en.whyuseit.description2 : lang.es.whyuseit.description2"></p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-6">
+              <div class="text-center px-lg-3"><img class="img-fluid mb-3" src="assets/img/illustrations/cloud.png" width="90" alt="" />
+                <h6 :class="{ 'title-color' : isDark }" class="fw-bold" x-text="isEng ? lang.en.whyuseit.reason3 : lang.es.whyuseit.reason3"></h5>
+                <p class="mb-md-0" x-text="isEng ? lang.en.whyuseit.description3 : lang.es.whyuseit.description3"></p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-6">
+              <div class="text-center px-lg-3"><img class="img-fluid mb-3" src="assets/img/illustrations/customization.png" width="90" alt="" />
+                <h6 :class="{ 'title-color' : isDark }" class="fw-bold" x-text="isEng ? lang.en.whyuseit.reason4 : lang.es.whyuseit.reason4"></h5>
+                <p class="mb-md-0" x-text="isEng ? lang.en.whyuseit.description4 : lang.es.whyuseit.description4"></p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-6">
+              <div class="text-center px-lg-3"><img class="img-fluid mb-3" src="assets/img/illustrations/ux.png" width="90" alt="" />
+                <h6 :class="{ 'title-color' : isDark }" class="fw-bold" x-text="isEng ? lang.en.whyuseit.reason5 : lang.es.whyuseit.reason5"></h5>
+                <p class="mb-md-0" x-text="isEng ? lang.en.whyuseit.description5 : lang.es.whyuseit.description5"></p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-6">
+              <div class="text-center px-lg-3"><img class="img-fluid mb-3" src="assets/img/illustrations/support.png" width="90" alt="" />
+                <h6 :class="{ 'title-color' : isDark }" class="fw-bold" x-text="isEng ? lang.en.whyuseit.reason6 : lang.es.whyuseit.reason6"></h5>
+                <p class="mb-md-0" x-text="isEng ? lang.en.whyuseit.description6 : lang.es.whyuseit.description6"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close  - Why use it ===============-->
+      <!-- ============================================-->
+
+
+
+
+      <!-- ============================================-->
+      <!-- <section> begin - Ultimate features ========-->
+      <section class="py-6">
+
+        <div class="container">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-5 order-md-1 text-center text-md-start"><img class="img-fluid mb-4" src="assets/img/illustrations/ultimate-feature.png" alt="" /></div>
+              <div class="col-md-6 text-center text-md-start">
+                <h6 :class="{ 'title-color' : isDark }" class="fw-bold fs-4 display-3 lh-sm" x-html="isEng ? lang.en.ultimate.title : lang.es.ultimate.title"></h6>
+                <p class="my-4 pe-xl-5" x-text="isEng ? lang.en.ultimate.description : lang.es.ultimate.description"></p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-4">
+                      <div class="py-4"><img class="img-fluid" src="assets/img/illustrations/app.png" width="90" alt="" /></div>
+                      <h6 :class="{ 'title-color' : isDark }" class="fw-bold text-undefined" x-text="isEng ? lang.en.whyuseit.reason1 : lang.es.whyuseit.reason1"></h5>
+                      <p class="mt-2 mb-0" x-text="isEng ? lang.en.whyuseit.description1 : lang.es.whyuseit.description1"></p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-4">
+                      <div class="py-4"><img class="img-fluid" src="assets/img/illustrations/ux.png" width="90" alt="" /></div>
+                      <h6 :class="{ 'title-color' : isDark }" class="fw-bold text-undefined" x-text="isEng ? lang.en.whyuseit.reason5 : lang.es.whyuseit.reason5"></h5>
+                      <p class="mt-2 mb-0" x-text="isEng ? lang.en.whyuseit.description5 : lang.es.whyuseit.description5"></p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-4">
+                      <div class="py-4"><img class="img-fluid" src="assets/img/illustrations/cloud.png" width="90" alt="" /></div>
+                      <h6 :class="{ 'title-color' : isDark }" class="fw-bold text-undefined" x-text="isEng ? lang.en.whyuseit.reason3 : lang.es.whyuseit.reason3"></h5>
+                      <p class="mt-2 mb-0" x-text="isEng ? lang.en.whyuseit.description3 : lang.es.whyuseit.description3"></p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-4">
+                      <div class="py-4"><img class="img-fluid" src="assets/img/illustrations/support.png" width="90" alt="" /></div>
+                      <h6 :class="{ 'title-color' : isDark }" class="fw-bold text-undefined" x-text="isEng ? lang.en.whyuseit.reason6 : lang.es.whyuseit.reason6"></h5>
+                      <p class="mt-2 mb-0" x-text="isEng ? lang.en.whyuseit.description6 : lang.es.whyuseit.description6"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close - Ultimate features ========-->
+      <!-- ============================================-->
+
+
+
+
+      <!-- ============================================-->
+      <!-- <section> begin - pricing ==================-->
+      <section class="py-8" id="pricing">
+
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xxl-5 text-center mb-3">
+              <h6 :class="{ 'title-color' : isDark }" class="fw-bold fs-4 display-3 lh-sm mb-3" x-text="isEng ? lang.en.pricing.title : lang.es.pricing.title"></h6>
+              <p class="mb-4" x-text="isEng ? lang.en.pricing.description : lang.es.pricing.description"></p>
+            </div>
+          </div>
+          <div class="row flex-center">
+            <div class="col-12 mb-3 d-none">
+              <div class="d-flex justify-content-center">
+                <label class="form-check-label me-2" for="customSwitch1" x-text="isEng ? lang.en.pricing.monthly : lang.es.pricing.monthly"></label>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" id="customSwitch1" type="checkbox" checked="checked" />
+                  <label class="form-check-label align-top" for="customSwitch1" x-text="isEng ? lang.en.pricing.yearly : lang.es.pricing.yearly"></label>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card shadow-lg mb-4 border-0" :class="{ 'bg-pricing-card' : isDark }">
+                <div class="card-header border-bottom-0 pt-7 pb-5" :class="{ 'bg-card-header' : isDark }">
+                  <div class="d-flex justify-content-center">
+                    <h1 :class="{ 'title-color' : isDark }" class="fw-bold">$0</h1><span class="d-flex align-items-center d-none">/month</span>
+                  </div>
+                  <h6 :class="{ 'title-color' : isDark }" class="fw-bold text-center" x-text="isEng ? lang.en.pricing.business : lang.es.pricing.business"></h5>
+                  <span class="text-700 text-center d-block" x-text="isEng ? lang.en.pricing.busidesc : lang.es.pricing.busidesc"></span>
+                </div>
+                <div class="card-body mx-auto">
+                  <ul class="list-unstyled mb-4">
+                    <li class="text-700 py-2 text-secondary" x-text="isEng ? lang.en.pricing.item1 : lang.es.pricing.item1"></li>
+                    <li class="text-700 py-2 text-secondary" x-text="isEng ? lang.en.pricing.item2 : lang.es.pricing.item2"></li>
+                    <li class="text-700 py-2 text-secondary" x-text="isEng ? lang.en.pricing.item3 : lang.es.pricing.item3"></li>
+                    <li class="text-700 py-2 text-secondary" x-text="isEng ? lang.en.pricing.item4 : lang.es.pricing.item4"></li>
+                  </ul><a :class="{ 'bg-dark-button' : isDark }" class="btn btn-lg btn-primary rounded-pill mb-3 w-100" href="#" x-text="isEng ? lang.en.pricing.button1 : lang.es.pricing.button1"></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card shadow-lg mb-4" :class="{ 'bg-pricing-card' : isDark }">
+                <div class="card-header border-bottom-0 pt-7 pb-5" :class="{ 'bg-card-header' : isDark }">
+                  <div class="d-flex justify-content-center">
+                    <h1 :class="{ 'title-color' : isDark }" class="fw-bold">$50</h1><span class="d-flex align-items-center d-none">/month</span>
+                  </div>
+                  <h6 :class="{ 'title-color' : isDark }" class="fw-bold text-center" x-text="isEng ? lang.en.pricing.businesspro : lang.es.pricing.businesspro"></h5>
+                  <span class="text-700 text-center d-block" x-text="isEng ? lang.en.pricing.busiprodesc : lang.es.pricing.busiprodesc"></span>
+                </div>
+                <div class="card-body mx-auto">
+                  <ul class="list-unstyled mb-4">
+                    <li class="text-700 py-2 text-secondary" x-text="isEng ? lang.en.pricing.item5 : lang.es.pricing.item5"></li>
+                    <li class="text-700 py-2 text-secondary" x-text="isEng ? lang.en.pricing.item6 : lang.es.pricing.item6"></li>
+                    <li class="text-700 py-2 text-secondary" x-text="isEng ? lang.en.pricing.item7 : lang.es.pricing.item7"></li>
+                    <li class="text-700 py-2 text-secondary" x-text="isEng ? lang.en.pricing.item8 : lang.es.pricing.item8"></li>
+                  </ul>
+                  <div class="d-flex flex-column"> <a :class="{ 'bg-dark-button' : isDark }" class="btn btn-lg btn-primary rounded-pill mb-3 w-100" href="#" x-text="isEng ? lang.en.pricing.button2 : lang.es.pricing.button2"></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close - pricing ==================-->
+      <!-- ============================================-->
+
+
+      <!-- ============================================-->
+      <!-- <section> begin - testimonial ==============-->
+      <section class="py-8" id="testimonial">
+        <div class="container-lg">
+          <div class="row flex-center">
+            <div class="col-sm-10 col-md-5 col-lg-5 order-md-0 text-center text-md-start"><img class="img-fluid mb-4" src="assets/img/illustrations/testimonial.png" alt="" /></div>
+            <div class="col-sm-10 col-md-6 col-lg-6 text-center text-md-start offset-md-1">
+              <h6 :class="{ 'title-color' : isDark }" class="fw-bold fs-4 display-3 lh-sm" x-text="isEng ? lang.en.testimonial.title : lang.es.testimonial.title"></h6>
+              <p class="my-4 pe-xl-5" x-text="isEng ? lang.en.testimonial.description : lang.es.testimonial.description"></p>
+              <div class="carousel slide" id="carouselExampleDark" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-bs-interval="10000">
+                    <div class="row h-100">
+                      <div class="col-12">
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <h6 :class="{ 'title-color' : isDark }" class="my-4 fw-bold lh-sm">User friendly &amp; Customizable</h5>
+                        <p class="mb-0 text-center text-md-start">Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
+                      </div>
+                      <div class="col-xl-6 pt-4 d-flex d-sm-block flex-center">
+                        <div class="d-flex align-items-md-center"><img class="img-fluid me-4 me-md-3 me-lg-4" src="assets/img/gallery/user.png" width="100" alt="" />
+                          <div class="w-lg-50 my-3">
+                            <h6 :class="{ 'title-color' : isDark }" class="mb-0 fw-bold">Cristian Artiga</h5>
+                            <p class="fw-normal mb-0">Web Developer</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <div class="row h-100">
+                      <div class="col-12">
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <h6 :class="{ 'title-color' : isDark }" class="my-4 fw-bold lh-sm">User friendly &amp; Customizable</h5>
+                        <p class="mb-0 text-center text-md-start">Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
+                      </div>
+                      <div class="col-xl-6 pt-4 d-flex d-sm-block flex-center">
+                        <div class="d-flex align-items-md-center"><img class="img-fluid me-4 me-md-3 me-lg-4" src="assets/img/gallery/user-1.png" width="100" alt="" />
+                          <div class="w-lg-50 my-3">
+                            <h6 :class="{ 'title-color' : isDark }" class="mb-0 fw-bold">Irvin Peraza</h5>
+                            <p class="fw-normal mb-0">DB Admin</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="row h-100">
+                      <div class="col-12">
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                        <h6 :class="{ 'title-color' : isDark }" class="my-4 fw-bold lh-sm">User friendly &amp; Customizable</h5>
+                        <p class="mb-0 text-center text-md-start">Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
+                      </div>
+                      <div class="col-xl-6 pt-4 d-flex d-sm-block flex-center">
+                        <div class="d-flex align-items-md-center"><img class="img-fluid me-4 me-md-3 me-lg-4" src="assets/img/gallery/user-2.png" width="100" alt="" />
+                          <div class="w-lg-50 my-3">
+                            <h6 :class="{ 'title-color' : isDark }" class="mb-0 fw-bold">Helder Hernandez</h5>
+                            <p class="fw-normal mb-0">Java Developer</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="position-relative mt-sm-n5"><a :class="{ 'link-color' : isDark }" class="carousel-control-prev carousel-icon z-index-2" href="#carouselExampleDark" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></a><a :class="{ 'link-color' : isDark }" class="carousel-control-next carousel-icon z-index-2" href="#carouselExampleDark" role="button" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- <section> close - testimonial ==============-->
+      <!-- ============================================-->
+
+
+      <!-- ============================================-->
+      <!-- <section> begin - FAQ ======================-->
+      <section class="py-8" id="faq">
+
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 text-center mb-3">
+              <h6 :class="{ 'title-color' : isDark }" class="fw-bold fs-4 display-3 lh-sm mb-3" x-text="isEng ? lang.en.faq.title : lang.es.faq.title"></h6>
+              <p class="mb-5" x-text="isEng ? lang.en.faq.description : lang.es.faq.description"></p>
+            </div>
+          </div>
+          <div class="row flex-center">
+            <div class="col-lg-9">
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item mb-2">
+                  <h2 :class="{ 'title-color' : isDark }" class="accordion-header" id="heading1">
+                    <button :class="{ 'bg-accordion-button': isDark }" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                      <span :class="{ 'title-color' : isDark }" class="mb-0 fw-bold text-start fs-1 text-1000" x-text="isEng ? lang.en.faq.question1 : lang.es.faq.question1"></span></button>
+                  </h2>
+                  <div class="accordion-collapse collapse show" id="collapse1" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                    <div class="accordion-body" :class="{ 'bg-100' : !isDark }" x-html="isEng ? lang.en.faq.answer1 : lang.es.faq.answer1"></div>
+                  </div>
+                </div>
+                <div class="accordion-item mb-2">
+                  <h2 :class="{ 'title-color' : isDark }" class="accordion-header" id="heading2">
+                    <button :class="{ 'bg-accordion-button': isDark }" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                      <span :class="{ 'title-color' : isDark }" class="mb-0 fw-bold text-start fs-1 text-1000" x-text="isEng ? lang.en.faq.question2 : lang.es.faq.question2"></span></button>
+                  </h2>
+                  <div class="accordion-collapse collapse" id="collapse2" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                    <div class="accordion-body" :class="{ 'bg-100' : !isDark }" x-html="isEng ? lang.en.faq.answer2 : lang.es.faq.answer2"></div>
+                  </div>
+                </div>
+                <div class="accordion-item mb-2">
+                  <h2 :class="{ 'title-color' : isDark }" class="accordion-header" id="heading3">
+                    <button :class="{ 'bg-accordion-button': isDark }" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                      <span :class="{ 'title-color' : isDark }" class="mb-0 fw-bold text-start fs-1 text-1000" x-text="isEng ? lang.en.faq.question3 : lang.es.faq.question3"></span></button>
+                  </h2>
+                  <div class="accordion-collapse collapse" id="collapse3" aria-labelledby="heading3" data-bs-parent="#accordionExample">
+                    <div class="accordion-body" :class="{ 'bg-100' : !isDark }" x-html="isEng ? lang.en.faq.answer3 : lang.es.faq.answer3"></div>
+                  </div>
+                </div>
+                <div class="accordion-item mb-2">
+                  <h2 :class="{ 'title-color' : isDark }" class="accordion-header" id="heading4">
+                    <button :class="{ 'bg-accordion-button': isDark }" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                      <span :class="{ 'title-color' : isDark }" class="mb-0 fw-bold text-start fs-1 text-1000" x-text="isEng ? lang.en.faq.question4 : lang.es.faq.question4"></span></button>
+                  </h2>
+                  <div class="accordion-collapse collapse" id="collapse4" aria-labelledby="heading4" data-bs-parent="#accordionExample">
+                    <div class="accordion-body" :class="{ 'bg-100' : !isDark }" x-html="isEng ? lang.en.faq.answer4 : lang.es.faq.answer4"></div>
+                  </div>
+                </div>
+                <div class="accordion-item mb-2">
+                  <h2 :class="{ 'title-color' : isDark }" class="accordion-header" id="heading5">
+                    <button :class="{ 'bg-accordion-button': isDark }" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="true" aria-controls="collapse5">
+                      <span :class="{ 'title-color' : isDark }" class="mb-0 fw-bold text-start fs-1 text-1000" x-text="isEng ? lang.en.faq.question5 : lang.es.faq.question5"></span></button>
+                  </h2>
+                  <div class="accordion-collapse collapse" id="collapse5" aria-labelledby="heading5" data-bs-parent="#accordionExample">
+                    <div class="accordion-body" :class="{ 'bg-100' : !isDark }" x-html="isEng ? lang.en.faq.answer5 : lang.es.faq.answer5"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close - FAQ ======================-->
+      <!-- ============================================-->
+
+      
+      <!-- ============================================-->
+      <!-- <section> begin - Download =================-->
+      <section class="py-6" id="download">
+        <hr />
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-5 col-lg-7 order-md-1 text-center text-md-start z-index-2 cta-image"><img class="img-fluid mb-4 mb-md-0" src="assets/img/illustrations/cta.png" width="850" alt="" /></div>
+            <div class="col-md-7 col-lg-5 text-center text-md-start">
+              <h1 :class="{ 'title-color' : isDark }" class="display-3 fw-bold lh-sm" x-text="isEng ? lang.en.download.title : lang.es.download.title"></h1>
+              <p class="my-4" x-text="isEng ? lang.en.download.description : lang.es.download.description"></p>
+              <div class="d-flex justify-content-center d-md-inline-block">
+                <a :class="{ 'link-color' : isDark }" class="pe-2 pe-sm-3 pe-md-4" href="!#"><img src="assets/img/illustrations/google-play.png" width="160" alt="" /></a>
+                <a :class="{ 'link-color' : isDark }" href="!#"><img src="assets/img/illustrations/app-store.png" width="160" alt="" /></a></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- <section> close - Download =================-->
+      <!-- ============================================-->
+
+
+      <!-- ============================================-->
+      <!-- <section> begin - Footer ===================-->
+      <section class="py-8 bg-1000">
+
+        <div class="container">
+          <div class="row flex-center">
+            <div class="col-auto mb-5"><a :class="{ 'link-color' : isDark }" class="pe-2 d-flex align-items-center text-decoration-none fw-bold fs-3" href="#">
+                <div class="text-warning">Noti</div>
+                <div class="text-white">Auto</div>
+              </a></div>
+          </div>
+          <div class="row flex-center">
+            <div class="col-auto mb-5">
+              <ul class="list-unstyled list-inline mb-0">
+                <li class="list-inline-item me3 me-sm-4">
+                  <a :class="{ 'link-color' : isDark }" class="text-light text-decoration-none" href="#home" x-text="isEng ? lang.en.menu.home : lang.es.menu.home"></a>
+                </li>
+                <li class="list-inline-item me3 me-sm-4">
+                  <a :class="{ 'link-color' : isDark }" class="text-light text-decoration-none" href="#features" x-text="isEng ? lang.en.menu.features : lang.es.menu.features"></a>
+                </li>
+                <li class="list-inline-item me3 me-sm-4">
+                  <a :class="{ 'link-color' : isDark }" class="text-light text-decoration-none" href="#whyuseit" x-text="isEng ? lang.en.menu.whyuse : lang.es.menu.whyuse"></a>
+                </li>
+                <li class="list-inline-item me3 me-sm-4">
+                  <a :class="{ 'link-color' : isDark }" class="text-light text-decoration-none" href="#pricing" x-text="isEng ? lang.en.menu.plan : lang.es.menu.plan"></a>
+                </li>
+                <li class="list-inline-item me3 me-sm-4">
+                  <a :class="{ 'link-color' : isDark }" class="text-light text-decoration-none" href="#testimonial" x-text="isEng ? lang.en.menu.testimonials : lang.es.menu.testimonials"></a>
+                </li>
+                <li class="list-inline-item me3 me-sm-4">
+                  <a :class="{ 'link-color' : isDark }" class="text-light text-decoration-none" href="#faq" x-text="isEng ? lang.en.menu.faq : lang.es.menu.faq"></a>
+                </li>
+                <li class="list-inline-item me3 me-sm-4">
+                  <a :class="{ 'link-color' : isDark }" class="text-light text-decoration-none" href="#download" x-text="isEng ? lang.en.menu.download : lang.es.menu.download"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row flex-center">
+            <div class="col-auto mb-5">
+              <ul class="list-unstyled list-inline">
+                <li class="list-inline-item me-3"><a :class="{ 'link-color' : isDark }" class="text-decoration-none" href="#!">
+                    <svg class="bi bi-facebook" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#7D7987" viewBox="0 0 16 16">
+                      <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>
+                    </svg></a></li>
+                <li class="list-inline-item me-3"><a :class="{ 'link-color' : isDark }" href="#!">
+                    <svg class="bi bi-twitter" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#7D7987" viewBox="0 0 16 16">
+                      <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
+                    </svg></a></li>
+                <li class="list-inline-item me-3"><a :class="{ 'link-color' : isDark }" href="#!">
+                    <svg class="bi bi-hash" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 16 16">
+                      <path d="M8.39 12.648a1.32 1.32 0 0 0-.015.18c0 .305.21.508.5.508.266 0 .492-.172.555-.477l.554-2.703h1.204c.421 0 .617-.234.617-.547 0-.312-.188-.53-.617-.53h-.985l.516-2.524h1.265c.43 0 .618-.227.618-.547 0-.313-.188-.524-.618-.524h-1.046l.476-2.304a1.06 1.06 0 0 0 .016-.164.51.51 0 0 0-.516-.516.54.54 0 0 0-.539.43l-.523 2.554H7.617l.477-2.304c.008-.04.015-.118.015-.164a.512.512 0 0 0-.523-.516.539.539 0 0 0-.531.43L6.53 5.484H5.414c-.43 0-.617.22-.617.532 0 .312.187.539.617.539h.906l-.515 2.523H4.609c-.421 0-.609.219-.609.531 0 .313.188.547.61.547h.976l-.516 2.492c-.008.04-.015.125-.015.18 0 .305.21.508.5.508.265 0 .492-.172.554-.477l.555-2.703h2.242l-.515 2.492zm-1-6.109h2.266l-.515 2.563H6.859l.532-2.563z"></path>
+                    </svg></a></li>
+                <li class="list-inline-item me-3"><a :class="{ 'link-color' : isDark }" href="#!">
+                    <svg class="bi bi-instagram" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#7D7987" viewBox="0 0 16 16">
+                      <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"> </path>
+                    </svg></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row flex-center">
+            <div class="col-auto">
+              <p class="mb-0 fs--1 text-700" x-html="isEng ? lang.en.copyright : lang.es.copyright"></p>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close - Footer ===================-->
+      <!-- ============================================-->
+
+
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="vendors/@popperjs/popper.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="vendors/is/is.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="assets/js/theme.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400&amp;display=swap" rel="stylesheet">  
+
+    <script>
+      function notiAutoData() {
+        return {
+          isDark: false,
+          isEng: false,
+  
+          lang: {
+                en: {
+                    "menu":{
+                        "home": "Home",
+                        "features": "Features",
+                        "plan": "Plans",
+                        "testimonials": "Testimonials",
+                        "faq": "FAQ",
+                        "whyuse": "Why use it",
+                        "download": "Download"
+                    },
+                    "overview":{
+                        "promMsg": "Your first 50 clients FREE!",
+                        "title": "Best app for manage your client cars",
+                        "subtitle1": "Increase productivity with a simple car manage app",
+                        "subtitle2": "application for manage your car repair process",
+                        "button": "Try for free"
+                    },
+                    "companies": "Trusted by companies like",
+                    "features": {
+                      "title": "Awesome apps features",
+                      "description": "Increase productivity with a simple manage time app.<br class='d-none d-xl-block' /> App for managing your car repair time",
+                      "efficiency": "Efficiency",
+                      "effiDesc": "Provide a controlled and orderly record of information",
+                      "trust": "Trust",
+                      "trustDesc": "Build customer trust through clear records",
+                      "historical": "historical",
+                      "hisDesc": "Check every change or repair made to your car over time",
+                      "title2": "Check the status of your car anytime, anywhere",
+                      "description2": "Once the mechanic has registered the entry of your car, you can continue your routine or itinerary, since the application allows you to see when your car is ready to be picked up"
+                    },
+                    "technologies": {
+                        "title": "Technologies used to build this application",
+                        "description": "This app was created using the latest modern technologies as Flutter, Dark, Bootstrap 5, Alpine JS and more"
+                    },
+                    "whyuseit":{
+                        "title": "Why you should choose our app",
+                        "subtitle": "The rise of mobile devices completely transforms the way we organize and do our daily activities, which is why we created this application to:",
+                        "reason1": "App Development",
+                        "description1": "Our application was created with the most modern technologies on the market",
+                        "reason2": "More than 500 installations",
+                        "description2": "We are growing exponentially and more and more users are using our app",
+                        "reason3": "Cloud Storage",
+                        "description3": "All the information about your car is stored in the cloud, which allows you to review it whenever you want",
+                        "reason4": "Customization",
+                        "description4": "You can customize the appearance and language of your app",
+                        "reason5": "UX / UI",
+                        "description5": "The app takes meticulous care of the interface and user experience",
+                        "reason6": "Customer Support",
+                        "description6": "We count with many ways to receive support about all our process and services",
+                    },
+                    "ultimate": {
+                        "title": "Ultimate features<br />that we built",
+                        "description": "The rise of mobile devices completely transforms the way we organize and do our daily activities"
+                    },
+                    "pricing": {
+                        "title": "Get awesome features, without extra charges",
+                        "description": "Get all our services with a single payment and enjoy a real history of your car",
+                        "monthly": "Monthly",
+                        "yearly": "Yearly",
+                        "business": "Business Class",
+                        "busidesc": "For small mechanical workshops",
+                        "businesspro": "Pro Business",
+                        "busiprodesc": "For large mechanical workshops",
+                        "item1": "Register up to 50 clients",
+                        "item2": "Can't see history",
+                        "item3": "Allows you to update cart status",
+                        "item4": "unlimited time",
+                        "item5": "Unlimited customer registration",
+                        "item6": "You can see the car history",
+                        "item7": "Allows you to update cart status",
+                        "item8": "unlimited time",
+                        "button1": "Start free trial",
+                        "button2": "Buy Now!",
+                    },
+                    "testimonial": {
+                        "title": "See what our customers think",
+                        "description": "Learn about the satisfaction of our customers through the use of the app"
+                    },
+                    "faq": {
+                        "title": "Frequently asked questions",
+                        "description": "We show you some of the answers to the most common questions we receive daily",
+                        "question1": "App installation failed, how to update system information?",
+                        "answer1": "To install our app you must meet the minimum requirements on your device: <br><ul><li>Android +14 or IOS +10</li><li>At least 2 GB of storage</li></ul>",
+                        "question2": "How can I add a multiple cars to one client?",
+                        "answer2": "To add multiple carts to a customer you must follow the following steps:<br><ul><li>Enter the app with your credentials</li><li>Go to the customer section</li><li>Press the 'Add Cart' button</li><li>When saving the record, go back and press the button again</li></ul>",
+                        "question3": "How can I change my free plan to unlimited?",
+                        "answer3": "To change your plan and get the unlimited plan follow the following steps:<br><ul><li>Enter the App</li><li>Go to the 'About the App' section</li><li>Look for the link that says: <span class='fw-bold'>Update App</span></li><li>Complete the information and enjoy your new plan</li></ul>",
+                        "question4": "How can I become a member or advertise my products in the App?",
+                        "answer4": "In order to publish your products or services in our App, you must contact us by email: sales@notiauto.com, call us or write to us at +503 7951-8744, requesting information to become part of our partners",
+                        "question5": "Can I print my car history?",
+                        "answer5": "In order to print your car history you must follow the following steps:<br><ul><li>Enter the App</li><li>Go to the record of the car for which you want the report</li><li>Press the button: History</li><li>At the top or bottom of the screen press the button: Print</li><li>A PDF with your car history will be generated and downloaded</li></ul>"
+                    },
+                    "download": {
+                        "title": "Download our App now",
+                        "description": "Discover why our customers save time on their visits to the workshop and how they have better control of the changes in their cars!"
+                    },
+                    "copyright": "&copy; Copyright VegaSoft. All rights reserved"
+                },
+                es: {
+                    "menu":{
+                        "home": "Inicio",
+                        "features": "Características",
+                        "plan": "Planes",
+                        "testimonials": "Testimonios",
+                        "faq": "FAQ",
+                        "whyuse": "Porque usarla",
+                        "download": "Descargar"
+                    },
+                    "overview":{
+                        "promMsg": "Tus primeros 50 clientes GRATIS!",
+                        "title": "La mejor aplicación para gestionar los coches de tus clientes",
+                        "subtitle1": "Aumente la productividad con una sencilla aplicación de gestión de autos",
+                        "subtitle2": "aplicación para gestionar el proceso de reparación de tu auto",
+                        "button": "Prueba Gratis!"
+                    },
+                    "companies": "Con la confianza de empresas como",
+                    "features": {
+                      "title": "Características de la Aplicación",
+                      "description": "Aumente la productividad con una aplicación para gestionar el tiempo de reparación de tu coche.",
+                      "efficiency": "Eficiencia",
+                      "effiDesc": "Proporcionar un registro controlado y ordenado de la información",
+                      "trust": "Confianza",
+                      "trustDesc": "Fomenta la confianza del cliente a través de la claridad de los registros",
+                      "historical": "históricos",
+                      "hisDesc": "Consulta cada cambio o reparación hecho a traves del tiempo a tu vehiculo",
+                      "title2": "Verifica el estado de tu carro en cualquier momento y en cualquier lugar",
+                      "description2": "Una vez el mecánico haya registrado el ingreso de tu carro, puede continuar tu rutina o itinerario, ya que la aplicación te permite ver cuando tu carro este listo para retirarlo"
+                    },
+                    "technologies": {
+                        "title": "Tecnologías utilizadas para construir esta aplicación",
+                        "description": "Esta aplicación fue creada utilizando las últimas tecnologías modernas como Flutter, Dark, Bootstrap 5, Alpine JS y más"
+                    },
+                    "whyuseit":{
+                        "title": "¿Por qué deberías elegir nuestra aplicación?",
+                        "subtitle": "El auge de los dispositivos móviles transforma por completa la forma en que organizamos y hacemos nuestras actividades diarias, por lo que creamos está aplicación para:",
+                        "reason1": "Desarrollo de la aplicación",
+                        "description1": "Nuestra aplicación fue creada con las tecnologias mas modernas del mercado",
+                        "reason2": "Más de 500 instalaciones",
+                        "description2": "Estamos creciendo exponencialmente y cada vez son más usuarios los que utilizan nuestra app",
+                        "reason3": "Almacenamiento en la nube",
+                        "description3": "Toda la información de tu carro se almacena en la nube lo que permite que pueda revisarla en el momento que desees",
+                        "reason4": "Personalización",
+                        "description4": "Tú puedes personalizar la apariencia e idioma de tu app",
+                        "reason5": "Experiencia de usuario",
+                        "description5": "La app cuida minuciosamente la interfaz y experiencia de usuario",
+                        "reason6": "Atención al cliente",
+                        "description6": "Contamos con muchas formas de recibir soporte sobre todos nuestros procesos y servicios",
+                    },
+                    "ultimate": {
+                        "title": "Funciones definitivas<br/> que hemos creado",
+                        "description": "El auge de los dispositivos móviles transforma por completa la forma en que organizamos y hacemos nuestras actividades diarias"
+                    },
+                    "pricing": {
+                        "title": "Get awesome features, without extra charges",
+                        "description": "Obten todos nuestros servicios con un único pago y disfruta de un historico real de tu carro",
+                        "monthly": "Mensual",
+                        "yearly": "Anual",
+                        "business": "Pequeños Negocios",
+                        "busidesc": "Para pequeños talleres mecánicos",
+                        "businesspro": "Grandes Negocios",
+                        "busiprodesc": "Para grandes talleres mecánicos",
+                        "item1": "Registra hasta 50 clientes",
+                        "item2": "No puede ver el historial",
+                        "item3": "Permite actualizar estado del carro",
+                        "item4": "tiempo ilimtado",
+                        "item5": "Registra ilimitado de clientes",
+                        "item6": "Puedes ver el historial del carro",
+                        "item7": "Permite actualizar estado del carro",
+                        "item8": "unlimited time",
+                        "button1": "Empieza Gratis",
+                        "button2": "Comprar Ahora!",
+                    },
+                    "testimonial": {
+                        "title": "Mira lo que nuestros clientes opinan",
+                        "description": "Conoce la satisfacción de nuestros clientes mediante el uso de la app"
+                    },
+                    "faq": {
+                        "title": "Preguntas frecuentes",
+                        "description": "Te mostramos algunas de las respuestas a las preguntas más comunes que recibimos diariamente",
+                        "question1": "Error al instalar la aplicación, ¿cómo actualizar la información del sistema?",
+                        "answer1": "Para instalar nuestra app debes cumplir los requisitos minimos en tu dispositivo: <br><ul><li>Android +14 o IOS +10</li><li>Al menos 2 GB de almacenamiento</li></ul>",
+                        "question2": "¿Cómo puedo agregar varios autos a un cliente?",
+                        "answer2": "Para agregar múltiples carros a un cliente debes seguir los siguientes pasos:<br><ul><li>Ingresa a la app con tus credenciales</li><li>Ve a la sección de clientes</li><li>Presiona el boton 'Agregar carro'</li><li>Al guardar el registro regresa y presiona el boton nuevamente</li></ul>",
+                        "question3": "Como puedo cambiar mi plan gratuito al ilimitado?",
+                        "answer3": "Para cambiar tu plan y obtener el plan ilimitado sigue los siguientes pasos:<br><ul><li>Ingresa a la App</li><li>Ve a la sección 'Sobre de la App'</li><li>Busca el enlace que dice: <span class='fw-bold'>Actualizar App</span></li><li>Completa la información y disfruta de tu nuevo plan</li></ul>",
+                        "question4": "Como puedo hacerme socio o publicitar mis productos en la App?",
+                        "answer4": "Para poder publicar tus productos o servicios en nuestra App, debes contactarte con nosotros a través del correo: sales@notiauto.com, llamarnos o escribirnos al +503 7951-8744, solicitando información para forma parte de nuestros socios",
+                        "question5": "Puedo imprimir el historial de mi carro?",
+                        "answer5": "Para poder imprimir el historial de tu carro debes seguir los siguientes pasos:<br><ul><li>Ingresa a la App</li><li>Ve al registro del carro del cual deseas el reporte</li><li>Presiona el boton: Historial</li><li>En la parte superior o inferior de la pantall presiona el boton: Imprimir</li><li>Se generara y descargara un PDF con el historial de tu carro</li></ul>"
+                    },
+                    "download": {
+                        "title": "Descarga nuestra aplicación ahora",
+                        "description": "Descubre por qué nuestros ahorran tiempo en sus visitas en el taller y como tienen un mejor control de los cambios en sus carros!"
+                    },
+                    "copyright": "&copy; Copyright VegaSoft. Todos nuestros derechos son reservados"
+
+                },
+          }
+        }
+      }
+    </script>
+</body>
+</html>

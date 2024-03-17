@@ -1,0 +1,44 @@
+
+:root {
+    --dark-color: #dee2e6;
+    --dark-bg: #212529;
+}
+
+.darkColors{
+    color: var(--dark-color);
+    background-color: var(--dark-bg);
+}
+
+.lightColors {
+    color: #616368;
+    background-color: #fff;
+}
+
+.navbar-dark{
+    background-color: var(--dark-bg);
+}
+
+.navbar-light{
+    background-color: #fff;   
+}
+
+.title-color, 
+.link-color {
+    color: var(--dark-color) !important;
+}
+
+
+.bg-pricing-card {
+    color: var(--dark-color) !important;
+    background-color: #1B1F22 !important;
+}
+
+.bg-card-header,
+.bg-accordion-button {
+    background-color: #252a2f !important;
+}
+
+.bg-dark-button {
+    background-color: #3f3867 !important;
+    border-color: #3f3867 !important;;
+}
